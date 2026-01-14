@@ -1,0 +1,27 @@
+# Python System
+__pycache__/
+*.py[cod]
+.env
+
+# Virtual Environments
+venv/
+.venv/
+
+# Node/React 
+node_modules/
+dist/
+client/node_modules/
+
+# Windows Junk
+.DS_Store
+Thunmbs.db
+
+#IGNORE RAW DATA & PROTOTYPE FILES
+prototype/
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.qgz
+*.docx
+*.xlsx
