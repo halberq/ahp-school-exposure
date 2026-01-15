@@ -22,7 +22,7 @@ const MapView = () => {
         <MapContainer
         center={position} 
         zoom={10} 
-        style={{ height: '500px', width: '100%', borderRadius: '8px', border: '2px solid #ddd' }}
+        style={{ height: '100%', width: '100%', borderRadius: '8px', border: '2px solid #ddd' }}
         >
 
             <TileLayer

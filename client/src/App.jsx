@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import MapView from './components/MapView'
-
+import Sidebar from './components/Sidebar'
 
 function App() {
   return (
@@ -13,7 +13,11 @@ function App() {
 
         <main style={{padding: '20px'}}>
           <h2>Map</h2>
+          <Sidebar />
+
+          <div className = "map-content">
           <MapView />
+          </div>
         </main>
       </div>
   )
