@@ -1,22 +1,33 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, {useEffect, useState} from 'react';
+import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconshadow from 'leaflet/dist/images/marker-shadow.png';
-
-let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconshadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
+import axios from 'axios';
 
 const MapView = () => {
+    const [schools, setSchools] = useState([]);
     const position = [7.1907, 125.4553]; // Centered on Davao Region
+
+    // Fetches Data from Python Server
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/map-data')
+            .then(response => {
+                console.log('Data Loaded', response.data); // Debugging log
+                setSchools(response.data);
+            })
+
+            .catch(error => console.error("Error fetching data:", error));
+        }, []);
+
+    // Determine Legend for different Exposure Levels
+    const getColor = (level) => {
+        switch(level){
+            case 'High': return '#e74c3c';      // Red
+            case 'Moderate': return '#f39c12';  // Orange
+            case 'Low': return '#27ae60';       // Green
+            default: return '#7b5e5e';          // Grey for Unknown
+        }
+    };
+
 
     return (
         <MapContainer
@@ -30,11 +41,24 @@ const MapView = () => {
             url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker position={position}>
+            {schools.map((school, index) => (
+                <CircleMarker
+                key = {index}
+                center = {[school.Latitude, school.Longitude]}
+                radius = {5}
+                pathOptions = {{
+                    color: getColor(school.Exposure_Level),
+                    fillColor: getColor(school.Exposure_Level),
+                    fillOpacity: 0.7
+                }}
+            >
                 <Popup>
-                    Davao City <br /> Base of Operations.
+                    <strong>{school['School Name']}</strong><br />
+                    Exposure Index: {school.Exposure_Index?.toFixed(4)}<br />
+                    Risk Level: <strong>{school.Exposure_Level}</strong>
                 </Popup>
-            </Marker>
+            </CircleMarker>
+            ))}
         </MapContainer>
     );
 };
