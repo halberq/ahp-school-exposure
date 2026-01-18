@@ -1,13 +1,38 @@
 import React from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({ onAnalyze, data, loading }) => {
     return (
-        <div className="sidebar">
+        <div className="sidebar" style={{padding: '20px', background: 'white', maxWidth: '300px'}}>
             <h1 style = {{fontSize: '1.5rem', color: '#000000'}}>Control Panel</h1>  
             <p style = {{fontSize: '0.9rem', color: '#000000' }}>
                 Analyzing School Exposure based on proximity to geographic hazards
             </p>
             <hr />
+
+        <div className='analyis-section'>
+            <button
+            onClick={onAnalyze}
+            disabled={loading}
+            style = {{padding: '10px', width: '100%', cursor: 'pointer'}}
+        >
+            {loading ? "Calculating..." : "Running AHP Analysis"}
+        </button>
+
+        {data && (
+            <div className='results' style={{marginTop: '20px'}}>
+            <h4>Top 10 Most Exposed Schools</h4>
+            <ul>
+                {data.top_10_exposed_schools.map((school, index) => (
+                    <li key = {index}>
+                        <strong>{school['School Name']}</strong>
+                    <br />
+                    <small>Score: {school.Exposure_Index.toFixed(4)}</small>
+                    </li>
+                        ))}
+                    </ul>
+                </div>
+                )}
+                </div>
 
         <div className = "filter-group">
             <h4 style = {{color: '#000000'}}>Map Layers</h4>
