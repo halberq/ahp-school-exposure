@@ -1,22 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import axios from 'axios';
 
-const MapView = () => {
-    const [schools, setSchools] = useState([]);
+const MapView = ({ schools, layers }) => {
     const position = [7.1907, 125.4553]; // Centered on Davao Region
+    const [faultData, setFaultData] = useState(null);
+    const [riverData, setRiverData] = useState(null);
 
-    // Fetches Data from Python Server
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/map-data')
-            .then(response => {
-                console.log('Data Loaded', response.data); // Debugging log
-                setSchools(response.data);
-            })
+        fetch('geographic_hazards_data/faults.geojson')
+            .then(res => res.json())
+            .then(data => setFaultData(data))
+            .catch(err => console.error("Error loading fault data: ", err));
 
-            .catch(error => console.error("Error fetching data:", error));
-        }, []);
+        fetch('geographic_hazards_data/rivers.geojson')
+            .then(res => res.json())
+            .then(data => setRiverData(data))
+            .catch(err => console.error("Error loading river data: ", err));
+    }, []);
 
     // Determine Legend for different Exposure Levels
     const getColor = (level) => {
@@ -28,12 +29,15 @@ const MapView = () => {
         }
     };
 
+    console.log("--- MAP RENDER ---");
+    console.log("Faults Switch is:", layers.faults); 
+    console.log("Fault Data is:", faultData ? "Loaded" : "Loading...");
 
     return (
         <MapContainer
-        center={position} 
-        zoom={10} 
-        style={{ height: '100%', width: '100%', borderRadius: '8px', border: '2px solid #ddd' }}
+            center={position} 
+            zoom={10} 
+            style={{ height: '100%', width: '100%', borderRadius: '8px', border: '2px solid #ddd' }}    
         >
 
             <TileLayer
@@ -41,16 +45,24 @@ const MapView = () => {
             url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {schools.map((school, index) => (
+            {layers.faults && faultData && (
+                <GeoJSON data = {faultData} style = {{color: 'red', weight: 2, dashArray: '5, 5'}} />
+            )}
+
+            {layers.rivers && riverData && (
+                <GeoJSON data = {riverData} style = {{color: 'blue', weight: 1, dashArray: 1}} />
+            )}
+
+            {layers.schools && schools.map((school, index) => (
                 <CircleMarker
-                key = {index}
-                center = {[school.Latitude, school.Longitude]}
-                radius = {5}
-                pathOptions = {{
-                    color: getColor(school.Exposure_Level),
-                    fillColor: getColor(school.Exposure_Level),
-                    fillOpacity: 0.7
-                }}
+                    key = {index}
+                    center = {[school.Latitude, school.Longitude]}
+                    radius = {5}
+                    pathOptions = {{
+                        color: getColor(school.Exposure_Level),
+                        fillColor: getColor(school.Exposure_Level),
+                        fillOpacity: 0.7
+                    }}
             >
                 <Popup>
                     <strong>{school['School Name']}</strong><br />

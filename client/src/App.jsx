@@ -7,8 +7,9 @@ import Sidebar from './components/Sidebar'
 function App() {
 
   const[mapData, setMapData] = useState([]);
-  const[analysis, setAnalysis] = useState(null);
-  const[loading, setLoading] = useState(false);
+  {/* Uncomment for the button: 
+    const[analysis, setAnalysis] = useState(null);
+    const[loading, setLoading] = useState(false);*/}
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/map-data')
@@ -16,18 +17,33 @@ function App() {
     .catch(err => console.error("Error loading map: ", err));
   }, []);
 
-  const runAnalysis = () => {
-    setLoading(true)
+{/* Uncomment for the button:  
+    const runAnalysis = () => {
+      setLoading(true)
 
-    axios.get('http://127.0.0.1:8000/analyze')
-    .then(res => {
-      setAnalysis(res.data);
-      setLoading(false);
-    })
-    .catch(err => {
-      console.error("Analysis failed: ", err)
-      setLoading(false);
-    });
+      axios.get('http://127.0.0.1:8000/analyze')
+      .then(res => {
+        setAnalysis(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Analysis failed: ", err)
+        setLoading(false);
+      });
+    };
+  */}
+
+  const[layers, setLayers] = useState({
+    schools:true,
+    faults: true,
+    rivers: true
+  });
+
+  const toggleLayer = (layerName) => {
+    setLayers(prevLayers => ({ 
+        ...prevLayers,
+        [layerName]: !prevLayers[layerName]
+      }));
   };
 
   return (
@@ -41,13 +57,19 @@ function App() {
 
       <div className = "content-container">
         <Sidebar 
-          onAnalyze={runAnalysis}
-          data={analysis}         
-          loading={loading}       
+          /* Uncomment for the button: 
+                onAnalyze={runAnalysis}
+                data={analysis}         
+                loading={loading}     */
+                layers={layers}
+                toggleLayer={toggleLayer}
         />
 
         <main className="map-area" style={{padding: '20px'}}>
-          <MapView schools={mapData} />
+          <MapView 
+            schools={mapData} 
+            layers={layers}
+          />
         </main>
       </div>
     </div>

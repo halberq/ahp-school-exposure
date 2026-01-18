@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Sidebar = ({ onAnalyze, data, loading }) => {
+const Sidebar = ({ data, layers, toggleLayer }) => { {/* add "onAnalyze" and "loading" parameters later to make button work */}
+
     return (
         <div className="sidebar" style={{padding: '20px', background: 'white', maxWidth: '300px'}}>
             <h1 style = {{fontSize: '1.5rem', color: '#000000'}}>Control Panel</h1>  
@@ -10,14 +11,15 @@ const Sidebar = ({ onAnalyze, data, loading }) => {
             <hr />
 
         <div className='analyis-section'>
-            <button
+           
+           {/* <button
             onClick={onAnalyze}
             disabled={loading}
             style = {{padding: '10px', width: '100%', cursor: 'pointer'}}
         >
             {loading ? "Calculating..." : "Running AHP Analysis"}
-        </button>
-
+        </button>*/}
+        
         {data && (
             <div className='results' style={{marginTop: '20px'}}>
             <h4>Top 10 Most Exposed Schools</h4>
@@ -39,19 +41,34 @@ const Sidebar = ({ onAnalyze, data, loading }) => {
 
             {/* Layer 1: Main Analysis Result */}
             <label style = {{display: 'block', marginBottom: '8px', color: '#000000'}}>
-                <input type = "checkbox" defaultChecked/>
+                <input 
+                    type = "checkbox" 
+                    checked={layers.schools}
+                    onChange={() => toggleLayer('schools')}
+                    style = {{marginRight: '8px'}}
+                />
                 School Exposure Risk
             </label>
 
             {/* Layer 2: Hazard Source: Fault Lines */}
             <label style = {{display: 'block', marginBottom: '8px', color: '#000000'}}>
-                <input type = "checkbox" defaultChecked/>
+                <input 
+                    type = "checkbox" 
+                    checked={layers.faults}
+                    onChange={() => toggleLayer('faults')}
+                    style = {{marginRight: '8px'}}
+                    />
                 Active Fault Lines
             </label>
 
             {/* Layer 3: Hazard Source: Major Rivers */}
             <label style = {{display: 'block', marginBottom: '8px', color: '#000000'}}>
-                <input type = "checkbox" defaultChecked/>
+                <input 
+                    type = "checkbox" 
+                    checked={layers.rivers}
+                    onChange={() => toggleLayer('rivers')}
+                    style = {{marginRight: '8px'}}
+                    />
                 Major Rivers
             </label>
 
