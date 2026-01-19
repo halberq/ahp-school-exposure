@@ -5,7 +5,9 @@
 - [✓] Create Sidebar System
 - [✓] Layer Toggling
 - [✓] Functioning analysis button
-- [ ] Allow sidebar to run analysis on individual filter layers
+- [ ] Finish Exposure Summary
+- [ ] Granular Analysis
+- [ ] School Zoom Interactivity
 - [ ] Compress or simplify large JSON files like rivers.geojson 
 - [ ] Upload Raw GIS Data to Google Drive and add link here for proof of process.
 
