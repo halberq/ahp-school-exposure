@@ -5,8 +5,9 @@
 - [✓] Create Sidebar System
 - [✓] Layer Toggling
 - [✓] Functioning analysis button
-- [ ] Finish Exposure Summary
-- [ ] Granular Analysis
+- [✓] Finish Exposure Summary
+- [✓] Granular Analysis
+- [ ] Update School Circle Markers information based on current analysis mode
 - [ ] School Zoom Interactivity
 - [ ] Compress or simplify large JSON files like rivers.geojson 
 - [ ] Upload Raw GIS Data to Google Drive and add link here for proof of process.
