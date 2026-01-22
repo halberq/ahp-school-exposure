@@ -1,8 +1,13 @@
 from fastapi import FastAPI # Import neccesary libraries
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import Dict
 import pandas as pd
 import numpy as np 
 import os # To check file existence
+
+class AnalysisRequest(BaseModel): # Define request model for analysis endpoint
+    weights: Dict[str, float]
 
 app = FastAPI() # Initialize FastAPI app instance
 
@@ -32,7 +37,7 @@ def calculate_ahp_weights(matrix): # AHP weight calculation function
 def read_roots():
     return {"message": "AHP Server in Online"}
 
-def get_processed_data():
+def get_processed_data(custom_weights = None):
     if not os.path.exists(DATA_FILE):
         return None
     
@@ -42,14 +47,19 @@ def get_processed_data():
     if 'Latitude' not in df.columns or 'Longitude' not in df.columns:
         return {"error": "Missing 'Latitude' or 'Longitude' columns in CSV"}
     
-    pairwise_matrix = np.array([ # Define pairwise comparison matrix
-        [1,   3], # 2x2 matrix for Fault vs River with their respective comparison weights
-        [1/3, 1]   
-    ])
+    if custom_weights:
+        weight_fault = custom_weights.get("Fault Proximity", 0.0) # Changes assigned weights based on enabled checkboxes
+        weight_river = custom_weights.get("River Proximity", 0.0)
+
+    else:
+        pairwise_matrix = np.array([ # Define pairwise comparison matrix
+            [1,   3], # 2x2 matrix for Fault vs River with their respective comparison weights
+            [1/3, 1]   
+        ])
     
-    weights = calculate_ahp_weights(pairwise_matrix)
-    weight_fault = float(weights[0]) 
-    weight_river = float(weights[1])
+        weights = calculate_ahp_weights(pairwise_matrix)
+        weight_fault = float(weights[0]) 
+        weight_river = float(weights[1])
 
     col_fault_dist = 'Fault_HubDist'
     col_river_dist = 'River_HubDist'
@@ -82,10 +92,13 @@ def get_map_data():
     return df.where(pd.notnull(df), None).to_dict(orient='records')
 
 
-@app.get("/analyze") # Create analyze endpoint
-def analyze_exposure():
+@app.post("/analyze") # Create analyze endpoint
+def analyze_exposure(request: AnalysisRequest):
 
-    result = get_processed_data()
+    incoming_weights = request.weights
+    print(f"User Selected: {incoming_weights}")
+
+    result = get_processed_data(custom_weights=incoming_weights)
     if result is None:
         return ("error" ":" "Data File not found")
     

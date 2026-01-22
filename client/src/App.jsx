@@ -18,9 +18,33 @@ function App() {
   }, []);
 
   const runAnalysis = () => {
+    
+    // Safety Check in the event every checkbox is turned off
+    if (!layers.faults && !layers.rivers){
+      console.log("No layers selected. Clearing Analysis");
+      setAnalysis(null);
+      setStats({high: 0, moderate: 0, low: 0});
+      return;
+    }
+
     setLoading(true)
 
-    axios.get('http://127.0.0.1:8000/analyze')
+    // Checks if the analysis will apply the granular mode or the default matrix
+    let payloadWeights = {};
+
+    if (!layers.faults || !layers.rivers){
+      console.log("Granular Mode Detected: Sending custom weights");
+      payloadWeights = {
+        "Fault Proximity": layers.faults ? 1.0 : 0.0,
+        "River Proximity": layers.rivers ? 1.0 : 0.0
+      };
+    } else {
+      console.log("Default Mode will be used: Using Backend AHP Matrix")
+    }
+
+    axios.post('http://127.0.0.1:8000/analyze', {
+      weights: payloadWeights
+    })
     .then(res => {
       console.log("Full Data:", res.data);
       const schoolsList = res.data.top_10_riskiest_schools;
