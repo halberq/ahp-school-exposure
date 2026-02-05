@@ -51,6 +51,11 @@ function App() {
 
       setAnalysis(schoolsList);
 
+      if(res.data.full_map_data){
+        console.log("Updating Markers...")
+        setMapData(res.data.full_map_data)
+      }
+
       if(res.data.statistics){
         setStats({
           high: res.data.statistics["High"] || 0,

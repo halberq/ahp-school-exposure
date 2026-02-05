@@ -53,15 +53,15 @@ const MapView = ({ schools, layers }) => {
                 <GeoJSON data = {riverData} style = {{color: 'blue', weight: 1, dashArray: 1}} />
             )}
 
-            {layers.schools && schools.map((school, index) => (
+            {layers.schools && schools.map((school) => (
                 <CircleMarker
-                    key = {index}
+                    key = {`${school['School Name']}-${school.Exposure_Level}`}
                     center = {[school.Latitude, school.Longitude]}
                     radius = {5}
                     pathOptions = {{
                         color: getColor(school.Exposure_Level),
                         fillColor: getColor(school.Exposure_Level),
-                        fillOpacity: 0.7
+                        fillOpacity: 0.8
                     }}
             >
                 <Popup>

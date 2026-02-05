@@ -110,6 +110,8 @@ def analyze_exposure(request: AnalysisRequest):
     top_10 = df.sort_values(by='Exposure_Index', ascending=False).head(10) # Get top 10 riskiest schools
     top_10_list = top_10[['School Name', col_location, 'Exposure_Index', 'Exposure_Level']].to_dict(orient='records') # Convert to list of dictionaries
 
+    full_map_data = df.where(pd.notnull(df), None).to_dict(orient='records') # Get full map data for frontend
+
     return {
         "status": "success", # Return success status
         "ahp_weights": {
@@ -117,8 +119,10 @@ def analyze_exposure(request: AnalysisRequest):
             "river_proximity": w_river
         },
         "statistics": stats,
-        "top_10_riskiest_schools": top_10_list
+        "top_10_riskiest_schools": top_10_list,
+        "full_map_data": full_map_data
     }
+    
 
 
     
