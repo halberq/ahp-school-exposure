@@ -46,11 +46,11 @@ const MapView = ({ schools, layers }) => {
             />
 
             {layers.faults && faultData && (
-                <GeoJSON data = {faultData} style = {{color: 'red', weight: 2, dashArray: '5, 5'}} />
+                <GeoJSON data = {faultData} style = {{color: 'red', weight: 2, dashArray: '5, 5'}} interactive={false}/>
             )}
 
             {layers.rivers && riverData && (
-                <GeoJSON data = {riverData} style = {{color: 'blue', weight: 1, dashArray: 1}} />
+                <GeoJSON data = {riverData} style = {{color: 'blue', weight: 1, dashArray: 1}} interactive={false}/>
             )}
 
             {layers.schools && schools.map((school) => (
