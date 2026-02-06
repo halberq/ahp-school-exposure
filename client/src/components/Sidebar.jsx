@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sidebar = ({ data, layers, toggleLayer, onAnalyze, loading, stats }) => { 
+const Sidebar = ({ data, layers, toggleLayer, onAnalyze, loading, stats, onSchoolClick}) => { 
 
     const handleCheckboxChange = (layerName) => {
         if (toggleLayer) {
@@ -16,8 +16,6 @@ const Sidebar = ({ data, layers, toggleLayer, onAnalyze, loading, stats }) => {
             </p>
             <hr />
 
-        <div className='analyis-section'>
-           
         <button
             onClick={onAnalyze}
             disabled={loading}
@@ -44,21 +42,31 @@ const Sidebar = ({ data, layers, toggleLayer, onAnalyze, loading, stats }) => {
             </div>
         </div>
 
-        {data && (
-            <div className='results' style={{marginTop: '20px'}}>
-            <h4 style = {{color: '#000000'}}>Top 10 Most Exposed Schools</h4>
+        <div className='analyis-section'>
+            <h3 style={{color: '#000000'}}>Top 10 Exposed Schools</h3>
             <ul>
-                {data?.slice(0, 10).map((school, index) => (
-                    <li key = {index} style = {{marginBottom: '10px', color: '#000000'}}>
-                        <strong>{index + 1}. {school['School Name']}</strong>
-                    <br />
-                    <small>Score: {school.Exposure_Index.toFixed(4)}</small>
-                    </li>
-                        ))}
-                    </ul>
-                </div>
+                {data && data.length > 0 ? (
+                    data.map((school, index) => (
+                        <li
+                            key = {index}
+                            onClick={() => onSchoolClick(school)}
+                            style={{
+                                cursor: "pointer",
+                                padding: "5px",
+                                borderBottom: "1px solid #ffffff",
+                                background: "#ffffff"
+                            }}
+                            title="Click to locate on map"
+                        >
+                            <strong style={{color: '#000000'}}>{index+1}. {school['School Name']}</strong><br/>
+                            <small style={{color: '#000000'}}>Score: {school.Exposure_Index?.toFixed(3)}</small>
+                         </li>
+                    ))
+                 ) : (
+                    <p style={{color: '#000000'}}>No analysis data available.</p>
                 )}
-                </div>
+            </ul>
+        </div>
 
         <div className = "filter-group">
                 <h4 style = {{color: '#000000'}}>Map Layers</h4>
@@ -103,7 +111,7 @@ const Sidebar = ({ data, layers, toggleLayer, onAnalyze, loading, stats }) => {
                 </label>
                 */}
             </div>
-    </div>
+        </div>
     );
 };
 

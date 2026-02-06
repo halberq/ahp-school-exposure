@@ -108,7 +108,7 @@ def analyze_exposure(request: AnalysisRequest):
 
     col_location = 'Municipality / City'
     top_10 = df.sort_values(by='Exposure_Index', ascending=False).head(10) # Get top 10 riskiest schools
-    top_10_list = top_10[['School Name', col_location, 'Exposure_Index', 'Exposure_Level']].to_dict(orient='records') # Convert to list of dictionaries
+    top_10_list = top_10[['School Name', col_location, 'Exposure_Index', 'Exposure_Level', 'Latitude', 'Longitude']].to_dict(orient='records') # Convert to list of dictionaries
 
     full_map_data = df.where(pd.notnull(df), None).to_dict(orient='records') # Get full map data for frontend
 

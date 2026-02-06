@@ -10,6 +10,7 @@ function App() {
   const[analysis, setAnalysis] = useState(null);
   const[loading, setLoading] = useState(false);
   const[stats, setStats] = useState({high:0, moderate:0, low:0});
+  const [focusedSchool, setFocusedSchool] = useState(null);
 
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/map-data')
@@ -91,6 +92,12 @@ function App() {
       }));
   };
 
+  const handleSchoolClick = (school) => {
+    console.log("App.jsx: Click received for:", school);
+    setFocusedSchool(school);
+    console.log("App.jsx: State requested to update.");
+  }
+
   return (
 
       <div className='main-layout'>
@@ -108,17 +115,20 @@ function App() {
               data={analysis}         
               loading={loading}   
               stats={stats} 
+              onSchoolClick={handleSchoolClick}
         />
 
         <main className="map-area" style={{padding: '20px'}}>
           <MapView 
             schools={mapData} 
             layers={layers}
+            focusedSchool={focusedSchool}
           />
         </main>
       </div>
     </div>
   );
+
 }
 
 export default App;

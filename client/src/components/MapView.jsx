@@ -1,8 +1,37 @@
 import React, {useEffect, useState} from 'react';
-import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, CircleMarker, Popup, GeoJSON, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const MapView = ({ schools, layers }) => {
+const FlyToSchool = ({ focusedSchool }) => {
+    const map = useMap();
+
+    useEffect(() => {
+        console.log("FlyToSchool received:", focusedSchool);
+
+        if (focusedSchool) {
+            const lat = focusedSchool.Latitude || focusedSchool.latitude || focusedSchool.lat;
+            const lng = focusedSchool.Longitude || focusedSchool.longitude || focusedSchool.long;
+
+            if (lat && lng) {
+            console.log("Flying to:[", lat, ", ", lng, "]");
+            map.flyTo(
+                [lat, lng],
+                16,
+                { duration: 2 }
+            );
+            }
+
+            else{
+            console.warn("Data exists, but coordinates are missing!", focusedSchool);
+            }
+        }
+    }, [focusedSchool, map]);
+
+    return null;
+};
+
+const MapView = ({ schools, layers, focusedSchool }) => {
+    console.log("MapView received prop:", focusedSchool);
     const position = [7.1907, 125.4553]; // Centered on Davao Region
     const [faultData, setFaultData] = useState(null);
     const [riverData, setRiverData] = useState(null);
@@ -39,6 +68,8 @@ const MapView = ({ schools, layers }) => {
             zoom={10} 
             style={{ height: '100%', width: '100%', borderRadius: '8px', border: '2px solid #ddd' }}    
         >
+
+            <FlyToSchool focusedSchool={focusedSchool} />
 
             <TileLayer
             attribution='&copy; <a href = "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'   
