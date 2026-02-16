@@ -1,16 +1,11 @@
-# Project To-Do List
-- [✓] Build Frontend Structure (React/Client)
-- [✓] Connect Frontend to FastAPI
-- [✓] Make Interactive Map
-- [✓] Create Sidebar System
-- [✓] Layer Toggling
-- [✓] Functioning analysis button
-- [✓] Finish Exposure Summary
-- [✓] Granular Analysis
-- [✓] Update School Circle Markers information based on current analysis mode
-- [✓] Fix layers blocking other layers
-- [✓] School Zoom Interactivity
-- [✓] Compress or simplify large JSON files like rivers.geojson 
-- [ ] Upload Raw GIS Data to Google Drive and add link here for proof of process.
+## Data Sources & Methodology
 
+This project utilizes geospatial data from various government and open-source providers. To maintain a lightweight repository, raw GIS files (Shapefiles, original CSVs) are hosted externally.
 
+| School Locations | DepEd / Open Data PH | GeoJSON / CSV |
+| River Networks | NAMRIA / Humanitarian Data Exchange | Shapefile |
+| Regional Boundaries | PSA / GADM | Shapefile |
+
+### Proof of Process
+You can access the raw, unclipped datasets and the QGIS project files used for data preparation here:
+**[Download Raw GIS Data (Google Drive)](https://drive.google.com/drive/folders/1RItRtYV2x-UkKXj6-ocxIhM2aU3BbYc9?usp=sharing)**
