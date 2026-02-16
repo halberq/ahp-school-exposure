@@ -1,22 +1,28 @@
-# Geospatial Mapping of Educational Exposure
+# Davao Region School Exposure Analysis (AHP)
 
-An interactive geospatial application designed to analyze and visualize the environmental exposure of schools in the Davao Region using the **Analytic Hierarchy Process (AHP)**. This project is based off a research paper I did for school, which I turned into a full-stack application 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Leaflet](https://img.shields.io/badge/Leaflet-199903?style=for-the-badge&logo=Leaflet&logoColor=white)
+
+An interactive geospatial application designed to analyze and visualize the environmental exposure of schools in the Davao Region using the **Analytic Hierarchy Process (AHP)**. This project is based on a research paper I conducted, now transformed into a full-stack functional application.
 
 ## How to Run the Program
 
 To run this project locally, follow these steps to start both the backend and the frontend.
 
 ### Server-Side (Python/FastAPI)
-1. **Run these commands**
+1. **Navigate and Run:**
    ```powershell
    cd server
    uvicorn main:app --reload
 
-**Verify the connection: Click the link in your terminal. It should display:** 
-    ```powershell
-    {"message":"AHP Server is Online"}.
+2. **Verify: Open your browser to the local link**. 
+    It should display: {"message":"AHP Server is Online"}.
 
+    /analyze: View raw calculation results.
 
+    /map-data: View raw school dataset.
 
 ## Data Sources & Methodology
 
