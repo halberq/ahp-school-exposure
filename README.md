@@ -2,6 +2,8 @@
 
 This project utilizes geospatial data from various government and open-source providers. To maintain a lightweight repository, raw GIS files (Shapefiles, original CSVs) are hosted externally.
 
+| Data Type | Source | Format |
+| :--- | :--- | :--- |
 | School Locations | DepEd / Open Data PH | GeoJSON / CSV |
 | River Networks | NAMRIA / Humanitarian Data Exchange | Shapefile |
 | Regional Boundaries | PSA / GADM | Shapefile |
