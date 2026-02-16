@@ -27,6 +27,15 @@ To run this project locally, follow these steps to start both the backend and th
 
   `/map-data`: View raw school dataset.
 
+### Client-Side (React/Vite)
+1. **Navigate and Run:**
+   ```powershell
+   cd client
+   npm run dev
+
+2. **Access: Open the local URL** (usually `http://localhost:5173`) to view the site.
+
+
 ## Data Sources & Methodology
 
 This project utilizes geospatial data from various government and open-source providers. To maintain a lightweight repository, raw GIS files (Shapefiles, original CSVs) are hosted externally.
