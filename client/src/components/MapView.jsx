@@ -42,7 +42,7 @@ const MapView = ({ schools, layers, focusedSchool }) => {
             .then(data => setFaultData(data))
             .catch(err => console.error("Error loading fault data: ", err));
 
-        fetch('geographic_hazards_data/rivers.geojson')
+        fetch('geographic_hazards_data/davao_rivers.geojson')
             .then(res => res.json())
             .then(data => setRiverData(data))
             .catch(err => console.error("Error loading river data: ", err));
