@@ -21,7 +21,7 @@ To run this project locally, follow these steps to start both the backend and th
     It should display:
    ```
    {"message": "AHP Server is Online"}
-
+  Add these to the browser local link above to check the endpoints
   /analyze: View raw calculation results.
 
   /map-data: View raw school dataset.
