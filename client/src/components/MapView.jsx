@@ -71,9 +71,9 @@ const MapView = ({ schools, layers, focusedSchool }) => {
 
             <FlyToSchool focusedSchool={focusedSchool} />
 
-            <TileLayer
-            attribution='&copy; <a href = "https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'   
+            <TileLayer 
             url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            keepBuffer={8}
             />
 
             {layers.faults && faultData && (
