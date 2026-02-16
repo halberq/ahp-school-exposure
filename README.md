@@ -49,6 +49,8 @@ To run this project locally, follow these steps to start both the backend and th
    * Exposure Summary: Live tally of results across the region.
    * Top 10 Rankings: A list of the schools with the highest exposure indexes. Clicking a school name automatically zooms the map to its location.
 
+---
+
 ## Data Sources & Methodology
 
 This project utilizes geospatial data from various government and open-source providers. To maintain a lightweight repository, raw GIS files (Shapefiles, original CSVs) are hosted externally.
