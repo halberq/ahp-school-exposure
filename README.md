@@ -19,7 +19,7 @@ To run this project locally, follow these steps to start both the backend and th
 
 2. **Verify: Open your browser to the local link**. 
     It should display:
-   ```
+   ```text
    {"message": "AHP Server is Online"}
   Add these to the browser local link above to check the endpoints
   
@@ -27,9 +27,11 @@ To run this project locally, follow these steps to start both the backend and th
 
   `/map-data`: View raw school dataset.
 
+---
+
 ### Client-Side (React/Vite)
 1. **Navigate and Run:**
-   ```powershell
+   ```text
    cd client
    npm run dev
 
@@ -37,9 +39,9 @@ To run this project locally, follow these steps to start both the backend and th
 
 ## Key Features
 **Interactive Map & Layers**
-   Hazard Visualization: View **Active Faults** (Red Broken Lines) and **Major Rivers** (Blue Thick Lines).
-   School Exposure Markers: 50 schools (10 per province; 5 Public/5 Private) color-coded by exposure:
-      🟢 Low | 🟡 Moderate | 🔴 High
+   * Hazard Visualization: View **Active Faults** (Red Broken Lines) and **Major Rivers** (Blue Thick Lines).
+   * School Exposure Markers: 50 schools (10 per province; 5 Public/5 Private) color-coded by exposure:
+         🟢 Low | 🟡 Moderate | 🔴 High
 
 **Control Panel**
    Run AHP Analysis: Dynamically run an analysis based on toggled hazard layers.
