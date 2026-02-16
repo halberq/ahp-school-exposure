@@ -18,7 +18,7 @@ To run this project locally, follow these steps to start both the backend and th
    uvicorn main:app --reload
 
 2. **Verify: Open your browser to the local link**. 
-    It should display: {"message":"AHP Server is Online"}.
+    It should display: {&quot;message&quot;: &quot;AHP Server is Online&quot;}
 
     /analyze: View raw calculation results.
 
