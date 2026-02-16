@@ -27,7 +27,7 @@ To run this project locally, follow these steps to start both the backend and th
 
   `/map-data`: View raw school dataset.
 
-<br/>
+
 ### Client-Side (React/Vite)
 1. **Navigate and Run:**
    ```text
