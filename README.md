@@ -7,9 +7,14 @@ An interactive geospatial application designed to analyze and visualize the envi
 To run this project locally, follow these steps to start both the backend and the frontend.
 
 ### Server-Side (Python/FastAPI)
-1. **Navigate to the server folder:**
+1. **Run these commands**
    ```powershell
    cd server
+   uvicorn main:app --reload
+
+**Verify the connection: Click the link in your terminal. It should display:** 
+    ```powershell
+    {"message":"AHP Server is Online"}.
 
 
 
