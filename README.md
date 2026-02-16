@@ -27,15 +27,15 @@ To run this project locally, follow these steps to start both the backend and th
 
   `/map-data`: View raw school dataset.
 
----
-
-### Client-Side (React/Vite)
+<br/> ### Client-Side (React/Vite)
 1. **Navigate and Run:**
    ```text
    cd client
    npm run dev
 
 2. **Access: Open the local URL** (usually `http://localhost:5173`) to view the site.
+
+---
 
 ## Key Features
 **Interactive Map & Layers**
