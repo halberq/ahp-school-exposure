@@ -41,12 +41,12 @@ To run this project locally, follow these steps to start both the backend and th
 **Interactive Map & Layers**
    * Hazard Visualization: View **Active Faults** (Red Broken Lines) and **Major Rivers** (Blue Thick Lines).
    * School Exposure Markers: 50 schools (10 per province; 5 Public/5 Private) color-coded by exposure:
-         🟢 Low | 🟡 Moderate | 🔴 High
+         * 🟢 Low | 🟡 Moderate | 🔴 High
 
 **Control Panel**
-   Run AHP Analysis: Dynamically run an analysis based on toggled hazard layers.
-   Exposure Summary: Live tally of results across the region.
-   Top 10 Rankings: A list of the schools with the highest exposure indexes. Clicking a school name automatically zooms the map to its location.
+   * Run AHP Analysis: Dynamically run an analysis based on toggled hazard layers.
+   * Exposure Summary: Live tally of results across the region.
+   * Top 10 Rankings: A list of the schools with the highest exposure indexes. Clicking a school name automatically zooms the map to its location.
 
 ## Data Sources & Methodology
 
