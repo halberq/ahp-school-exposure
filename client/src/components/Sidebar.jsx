@@ -27,17 +27,17 @@ const Sidebar = ({ data, layers, toggleLayer, onAnalyze, loading, stats, onSchoo
         <div className="stats-box" style ={{marginTop: 'auto', padding: '15px', background: '#f0f4f8', borderRadius: '8px', border: '1px solid #dceefb'}}>
             <h4 style = {{margin: '0 0 10px 0', color: '#000000'}}>Exposure Summary</h4>
             <div style = {{display: 'flex', justifyContent: 'space-between', marginBottom: '5px', color: '#000000'}}>
-                <span>High Risk</span>
+                <span>High Exposure</span>
                 <strong>{stats ? stats.high : 0}</strong>
             </div>
 
             <div style = {{display: 'flex', justifyContent: 'space-between', marginBottom: '5px', color: '#000000'}}>
-                <span>Moderate Risk</span>
+                <span>Moderate Exposure</span>
                 <strong>{stats ? stats.moderate : 0}</strong>
             </div>
 
             <div style = {{display: 'flex', justifyContent: 'space-between', marginBottom: '5px', color: '#000000'}}>
-                <span>Low Risk</span>
+                <span>Low Exposure</span>
                 <strong>{stats ? stats.low : 0}</strong>
             </div>
         </div>
@@ -79,7 +79,7 @@ const Sidebar = ({ data, layers, toggleLayer, onAnalyze, loading, stats, onSchoo
                         onChange={() => handleCheckboxChange('schools')}
                         style = {{marginRight: '8px'}}
                     />
-                    School Exposure Risk
+                    Schools
                 </label>
 
                 {/* Layer 2: Hazard Source: Fault Lines */}

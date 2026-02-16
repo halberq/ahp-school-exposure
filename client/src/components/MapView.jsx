@@ -98,7 +98,7 @@ const MapView = ({ schools, layers, focusedSchool }) => {
                 <Popup>
                     <strong>{school['School Name']}</strong><br />
                     Exposure Index: {school.Exposure_Index?.toFixed(4)}<br />
-                    Risk Level: <strong>{school.Exposure_Level}</strong>
+                    Exposure Level: <strong>{school.Exposure_Level}</strong>
                 </Popup>
             </CircleMarker>
             ))}

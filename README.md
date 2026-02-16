@@ -1,3 +1,18 @@
+# Geospatial Mapping of Educational Exposure
+
+An interactive geospatial application designed to analyze and visualize the environmental exposure of schools in the Davao Region using the **Analytic Hierarchy Process (AHP)**. This project is based off a research paper I did for school, which I turned into a full-stack application 
+
+## How to Run the Program
+
+To run this project locally, follow these steps to start both the backend and the frontend.
+
+### Server-Side (Python/FastAPI)
+1. **Navigate to the server folder:**
+   ```powershell
+   cd server
+
+
+
 ## Data Sources & Methodology
 
 This project utilizes geospatial data from various government and open-source providers. To maintain a lightweight repository, raw GIS files (Shapefiles, original CSVs) are hosted externally.
