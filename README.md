@@ -10,7 +10,7 @@
 - [✓] Update School Circle Markers information based on current analysis mode
 - [✓] Fix layers blocking other layers
 - [✓] School Zoom Interactivity
-- [ ] Compress or simplify large JSON files like rivers.geojson 
+- [✓] Compress or simplify large JSON files like rivers.geojson 
 - [ ] Upload Raw GIS Data to Google Drive and add link here for proof of process.
 
 
